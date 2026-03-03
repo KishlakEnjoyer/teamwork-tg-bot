@@ -1,125 +1,184 @@
-# 👥 Team Members
+⸻
 
-* **[Erik](https://github.com/KishlakEnjoyer)**
-* **[Vlad](https://github.com/N0Nameez)** 
+🎵🎙 AI Music & Voice Telegram Bot
 
----
+A Telegram bot built with aiogram + FastAPI that provides:
+ • 🎙 Voice message recognition (Speech-to-Text)
+ • 🎵 Music search by:
+ • Track name
+ • Artist
+ • Genre
 
-# 🗂 Task Distribution
+The bot processes voice input, converts it to text, and allows users to discover music using the Deezer API.
 
-## 1. Telegram Bot (aiogram)
+⸻
 
-**Assigned to: Eric (Lead)**
+🚀 Features
 
-* Bot command handling (`/start`, `/help`, `/music`, `/analyze`, `/profile`)
-* Message routing and middleware
-* Integrating bot with FastAPI endpoints
-* Handling session/user state
+🎙 1. Voice Recognition
+ • Accepts Telegram voice messages
+ • Converts speech to text
+ • Returns recognized text to the user
+ • Can be extended for NLP or emotion detection
 
-**Support:** Vlad can help with testing or minor command additions
+🎵 2. Music Search (Deezer API)
+ • Search tracks by:
+ • Title
+ • Artist
+ • Genre
+ • Returns:
+ • Track name
+ • Artist
+ • Album
+ • Cover image
+ • Deezer link
 
----
+⸻
 
-## 2. FastAPI Backend
+🛠 Tech Stack
+ • Telegram Bot: aiogram
+ • Backend API: FastAPI
+ • Speech Recognition: trnsform-model
+ • Music API: Deezer Public API
 
-**Assigned: Shared**
+⸻
 
-* **Eric (Main focus)**
+📂 Project Structure
 
-  * Setting up core FastAPI structure
-  * Creating API endpoints for Telegram bot integration
-  * Handling user requests and responses
-  * API authentication / configuration
-  * Connecting backend with database
+project/
+│
+├── tg-bot/                # Telegram bot (aiogram)
+│   ├── handlers/
+│   ├── keyboards/
+│   └── main.py
+│
+├── backend/            # FastAPI backend
+│   ├── routers/
+│   ├── services/
+│   └── main.py
+│
+├── ai/
+│   └── speech_recognition.
+│
+├── resources/
+│
+├── requirements.txt
+│
+├── .env
+│
+├── README.md
+│
+└── .gitignore
 
-* **Vlad (Partial)**
+⸻
 
-  * Writing endpoints for AI services (`/analyze`, `/music`)
-  * Handling AI module calls from FastAPI
-  * Implementing logging and error handling
+🤖 Bot Commands
 
----
-
-## 3. Database (PostgreSQL)
-
-**Assigned to: Vlad (Lead)**
-
-* Designing database schema: users, messages, personality_profile, music_history
-* Creating tables and relations using SQLAlchemy
-* Writing async database queries using asyncpg
-* Handling database migrations
-
-**Support:** Eric assists in connecting endpoints to the database
-
----
-
-## 4. AI / ML Module
-
-**Assigned to: Vlad (Lead)**
-
-* Emotion detection with `j-hartmann/emotion-multilingual-distilroberta-base`
-* Personality profile building logic
-* Mapping emotions → music genres
-* Preparing dataset for future training or analytics
-
-**Support:** Eric can integrate the AI responses into bot messages
-
----
-
-## 5. Music API Integration (Spotify)
-
-**Assigned to: Eric (Lead)**
-
-* Integrating Spotify Web API via `spotipy`
-* Searching tracks and playlists
-* Sending recommended music to FastAPI / Telegram Bot
-* Handling API keys and authorization
-
-**Support:** Vlad can help map AI emotion output to Spotify genres
-
----
-
-## 6. Testing & QA
-
-**Shared:**
-
-* Unit tests for FastAPI endpoints (both)
-* Telegram bot testing (Eric lead)
-* AI module accuracy checks (Vlad lead)
-* End-to-end integration testing
-
----
-
-## 7. DevOps / Deployment
-
-**Shared:**
-
-* Docker setup (optional)
-* Environment variables and secrets management
-* VPS deployment (EU recommended for Spotify API)
-
----
-
-# 🏗 Summary Table
-
-| Task           | Eric    | Vlad    |
-| -------------- | ------- | ------- |
-| Telegram Bot   | Lead    | Support |
-| FastAPI Core   | Lead    | Partial |
-| Database       | Support | Lead    |
-| AI / ML Module | Support | Lead    |
-| Music API      | Lead    | Support |
-| Testing        | Shared  | Shared  |
-| Deployment     | Shared  | Shared  |
-
----
-
-This way:
-
-* **Eric focuses on what he’s strongest at** (bot + FastAPI core + Spotify)
-* **Vlad focuses on AI and database** but still contributes to FastAPI
-* Both share testing and deployment for full integration
-
----
+Command Description
+/start Start the bot
+/help Show help message
+/music Search for music
+Voice message Convert speech to text
 
 
+⸻
+
+👥 Team Members
+ • Eric – Telegram Bot & Deezer Integration
+ • Vlad – AI / Voice Recognition
+
+⸻
+
+🗂 Task Distribution
+
+1️⃣ Telegram Bot (aiogram)
+
+Assigned to: Eric (Lead)
+ • Bot command handling (/start, /help, /music)
+ • Voice message handling
+ • Message routing
+ • Middleware
+ • Integration with FastAPI
+ • User session handling
+
+Support: Vlad (testing & minor features)
+
+⸻
+
+2️⃣ FastAPI Backend
+
+Shared
+
+Eric (Lead)
+ • Core FastAPI setup
+ • API routes for bot integration
+ • Deezer API service integration
+ • Request validation
+ • Error handling
+
+Vlad (Partial)
+ • Voice recognition endpoint
+ • AI module integration
+ • Logging
+
+⸻
+
+3️⃣ AI / Speech Recognition Module
+
+Assigned to: Vlad (Lead)
+ • Voice message processing
+ • Speech-to-text integration
+ • Text preprocessing
+ • Future NLP expansion
+
+Support: Eric (bot-side formatting & response handling)
+
+⸻
+
+4️⃣ Deezer API Integration
+
+Assigned to: Eric (Lead)
+ • Integration with Deezer Public API
+ • Searching tracks by:
+ • Title
+ • Artist
+ • Genre
+ • Formatting music results for Telegram
+ • Handling API limits & response parsing
+
+Support: Vlad (optional improvements)
+
+⸻
+
+5️⃣ Testing & QA
+
+Shared
+ • FastAPI endpoint testing
+ • Bot command testing
+ • Voice recognition accuracy tests
+ • End-to-end testing
+
+⸻
+
+🏗 Summary Table
+
+Task Eric Vlad
+Telegram Bot Lead Support
+FastAPI Core Lead Partial
+Voice Recognition Support Lead
+Deezer API Lead Support
+Testing Shared Shared
+Deployment Shared Shared
+
+
+⸻
+
+📈 Future Improvements
+ • Emotion detection from voice
+ • Personalized recommendations
+ • Caching layer (Redis)
+ • Rate limiting
+ • Admin panel
+ • Web interface
+
+⸻

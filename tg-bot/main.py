@@ -4,10 +4,7 @@ import threading
 import os
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
-from dotenv import load_dotenv
-
-# from handlers import start, room, game
-
+from dotenv import load_dotenv  
 
 load_dotenv()
 

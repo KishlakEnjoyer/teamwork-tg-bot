@@ -169,13 +169,3 @@ project/
 | Deployment | Shared | Shared |
 
 ⸻
-
-📈 Future Improvements
- • Emotion detection from voice
- • Personalized recommendations
- • Caching layer (Redis)
- • Rate limiting
- • Admin panel
- • Web interface
-
-⸻

@@ -23,3 +23,9 @@ logs/
 
 *.db
 *.sqlite
+
+#dataset
+*.tar
+*.gz
+*.mp3
+*.tsv

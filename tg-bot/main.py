@@ -4,25 +4,29 @@ import threading
 import os
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
-from dotenv import load_dotenv  
+from dotenv import load_dotenv 
+
+from handlers import start, music, voice_video_messages, emotion_analysis
 
 load_dotenv()
 
 bot = Bot(token=os.getenv("BOT_TOKEN"))
 dp = Dispatcher()
 
+dp.include_router(start.router)
+dp.include_router(music.router)
+dp.include_router(voice_video_messages.router)
+dp.include_router(emotion_analysis.router)
 
 async def main():
     commands = [
-        BotCommand(command="start", description="Main menu"),
-        BotCommand(command="profile", description="Profile")
+        BotCommand(command="start", description="Just a welcome message with some instructions and a contact keyboard."),
+        BotCommand(command="music", description="Music action"),
+        BotCommand(command="help", description="Help message showing available commands and features."),
+        BotCommand(command="emotion", description="Analyze the sentiment of the provided text. Usage: /emotion Your text here")
     ]
     await bot.set_my_commands(commands)
     await dp.start_polling(bot)
-    
-@dp.message_handler(commands=['start'])
-async def start(message):
-    await message.answer('Hi, health 200.')
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)

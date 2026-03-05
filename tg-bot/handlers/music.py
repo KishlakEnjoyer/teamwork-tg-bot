@@ -1,31 +1,53 @@
-from aiogram import Router, types, F
-from aiogram.filters import Command, CommandStart
-from aiogram.fsm.context import FSMContext
-
-
-from keyboards import keyboard_back, keyboard_contacts
-from states.state_music_search_state import MusicSearchState
+from aiogram import Router, types
+from aiogram.filters import Command
+from aiogram.filters.command import CommandObject
+from aiogram.types import InputMediaPhoto, InputMediaAudio, BufferedInputFile
+import requests as rq
+import os
+from dotenv import load_dotenv
+import io
 
 router = Router()
+load_dotenv()
+BASE_URL_FASTAPI = os.getenv("BASE_URL_FASTAPI")
+
 
 @router.message(Command("music"))
-async def music(message: types.Message, state: FSMContext):
-    """
-    Handler for the /music command. Just a message with some instructions and a back button.
-    """
-    await message.answer('Here you can search music! Just send me the name of the song or the artist!', reply_markup=keyboard_back.back)
-    await state.set_state(MusicSearchState.waiting_for_music_name)
-    await message.answer()
+async def music(message: types.Message, command: CommandObject):
+    if not command.args:
+        await message.answer("Usage:\n/music <track or artist>")
+        return
 
-@router.callback_query(F.data == 'back')
-async def back_to_main_menu(callback_query: types.CallbackQuery, state: FSMContext):
-    """
-    Handler for the back button. Just a message with some instructions and a contact keyboard.
-    """
-    await callback_query.message.edit_text(f'Hi,{callback_query.from_user.first_name}!' +
-            '\nThis is a bot for recognition your voice and video messages!' +
-            '\nAlso you can search music! Just try command /music' +
-            '\nContacts of the developers ⬇️', reply_markup=keyboard_contacts.contacts)
-    await state.set_state(MusicSearchState.waiting_for_music_name)
-    await callback_query.answer()
-    
+    text = command.args
+
+    response = rq.get(f"{BASE_URL_FASTAPI}/get_track", params={"text": text})
+    if response.status_code != 200:
+        await message.answer("API error")
+        return
+
+    data = response.json()
+    tracks = data.get("tracks", [])
+    if not tracks:
+        await message.answer("Track not found")
+        return
+
+    caption_text = "\n".join(
+        [f'{i+1}.{t["title"]}({t["album"]}) — {t["artist"]}\nFull: {t["link"]}' for i, t in enumerate(tracks)]
+    )
+
+    media_photos = []
+    for i, track in enumerate(tracks[:3]):
+        media_photos.append(InputMediaPhoto(
+            media=track["image"],
+            caption=caption_text if i == 0 else None  
+        ))
+
+    await message.answer_media_group(media_photos)
+
+    media_audio = []
+    for track in tracks:
+        audio_resp = rq.get(track["preview"])
+        audio_file = BufferedInputFile(audio_resp.content, filename=f"{track['title']} - {track['artist']}.mp3")
+        media_audio.append(InputMediaAudio(media=audio_file, title=track['title'], performer=track['artist']))
+
+    await message.answer_media_group(media_audio)

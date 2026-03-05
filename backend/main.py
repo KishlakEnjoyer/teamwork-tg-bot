@@ -44,7 +44,7 @@ def get_track_by_title_or_singer(text: str):
             "album": track["album"]["title"],
             "preview": track["preview"],
             "link": track["link"],
-            "image": track["picture_xl"]
+            "image": track["album"]['cover_xl']
         })
 
     return {

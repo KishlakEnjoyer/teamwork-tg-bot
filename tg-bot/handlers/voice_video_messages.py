@@ -1,15 +1,13 @@
 import whisper
 import tempfile
 import os
-import io  
 from aiogram import Router, types
 
 model = whisper.load_model("small")
 
 def speech_to_text_from_bytes(audio_bytes: bytes) -> str:
     """
-    Принимает аудио в виде bytes (например, из bot.download_file),
-    возвращает распознанный текст.
+    Takes audio data as bytes (e.g., from bot.download_file) and returns the recognized text.
     """
     with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as tmp_file:
         tmp_file.write(audio_bytes)

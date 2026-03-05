@@ -19,8 +19,9 @@ dp.include_router(voice_video_messages.router)
 
 async def main():
     commands = [
-        BotCommand(command="start", description="Main menu"),
+        BotCommand(command="start", description="Just a welcome message with some instructions and a contact keyboard."),
         BotCommand(command="music", description="Music action"),
+        BotCommand(command="help", description="Help message showing available commands and features.")
     ]
     await bot.set_my_commands(commands)
     await dp.start_polling(bot)

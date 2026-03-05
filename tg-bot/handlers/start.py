@@ -14,3 +14,19 @@ async def send_welcome(message: types.Message):
             '\nThis is a bot for recognition your voice and video messages!' +
             '\nAlso you can search music! Just try command /music' +
             '\nContacts of the developers ⬇️', reply_markup=keyboard_contacts.contacts)
+    
+@router.message(Command("help"))
+async def send_welcome(message: types.Message):
+    """
+    Help message showing available commands and features.
+    """
+    help_text = (
+        f"👋 Hi, {message.from_user.first_name}!\n\n"
+        "<b>Available Commands:</b>\n"
+        "/start - Start the bot and see the welcome message\n"
+        "/help - Show this help message\n"
+        "/music &lt;text&gt; - Search for music tracks (e.g., /music monetka)\n\n"
+        "<b>Other Features:</b>\n"
+        "Send a <b>voice message</b> or <b>video note</b> (round video) to have the speech recognized automatically."
+    )
+    await message.answer(help_text, reply_markup=keyboard_contacts.contacts, parse_mode="HTML")

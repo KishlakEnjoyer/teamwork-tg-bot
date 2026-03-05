@@ -5,7 +5,6 @@ from aiogram.types import InputMediaPhoto, InputMediaAudio, BufferedInputFile
 import requests as rq
 import os
 from dotenv import load_dotenv
-import io
 
 router = Router()
 load_dotenv()
@@ -14,6 +13,10 @@ BASE_URL_FASTAPI = os.getenv("BASE_URL_FASTAPI")
 
 @router.message(Command("music"))
 async def music(message: types.Message, command: CommandObject):
+    """
+    Handles the /music command, searches for tracks via an API, sends image thumbnails with captions,
+    and sends audio previews as a media group.
+    """
     if not command.args:
         await message.answer("Usage:\n/music <track or artist>")
         return

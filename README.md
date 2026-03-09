@@ -58,8 +58,6 @@ project/
 │   ├── services/
 │   └── main.py
 │
-├── ai/
-│   └── speech_recognition.py
 │
 ├── resources/
 │
@@ -81,6 +79,7 @@ project/
 | `/start` | Start the bot |
 | `/help` | Show help message |
 | `/music` | Search for music |
+| `/emotion` | Emotion message classification |
 | `Voice message` | Convert speech to text |
 
 ⸻

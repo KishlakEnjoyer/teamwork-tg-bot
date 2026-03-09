@@ -18,8 +18,8 @@ processor = WhisperProcessor.from_pretrained(
 
 def speech_to_text_from_bytes_processor(audio_bytes: bytes) -> str:
     """
-    Распознаёт речь через Processor + Model (Hugging Face)
-    с пересэмплированием на 16kHz и автоопределением языка (русский/английский)
+    Speech recognition via Processor + Model (Hugging Face)
+    with 16 kHz resampling and automatic language detection (Russian/English)
     """
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
         tmp_file.write(audio_bytes)
@@ -27,32 +27,29 @@ def speech_to_text_from_bytes_processor(audio_bytes: bytes) -> str:
 
     try:
         speech, sr = librosa.load(temp_filename, sr=16000)
-
         input_features = processor(speech, sampling_rate=16000, return_tensors="pt").input_features
 
+        # Определяем язык через встроенный метод Whisper
         with torch.no_grad():
-            short_ids = model.generate(
-                input_features,
-                task="transcribe",
-                max_length=5
-            )
-
-        first_token = short_ids[0, 0].item()
-        detected_token = processor.tokenizer.decode([first_token]).strip()
+            predicted_ids = model.detect_language(input_features)
+        
+        lang_token_id = predicted_ids[0].argmax().item()
+        detected_lang = processor.tokenizer.decode([lang_token_id]).strip()
+        print(f"🔍 DETECTED LANG: {detected_lang}")
 
         lang_map = {
             "<|ru|>": "russian",
-            "<|en|>": "english"
+            "<|en|>": "english",
         }
-        language = lang_map.get(detected_token, "russian")  
-        print(f"🔍 Detected language token: {detected_token} → Using language: {language}")
+        language = lang_map.get(detected_lang, "russian")
+        print(f"🌍 LANGUAGE: {language}")
 
         with torch.no_grad():
             predicted_ids = model.generate(
                 input_features,
-                language=language,
+                forced_decoder_ids=None,
                 task="transcribe",
-                max_length=225
+                max_new_tokens=225
             )
 
         transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0]

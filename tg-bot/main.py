@@ -24,7 +24,8 @@ async def main():
         BotCommand(command="music", description="Music action"),
         BotCommand(command="help", description="Help message showing available commands and features."),
         BotCommand(command="emotion", description="Analyze the sentiment of the provided text. Usage: /emotion Your text here"),
-        BotCommand(command="ai", description="Ask the AI a question.")
+        BotCommand(command="ai", description="Ask the AI a question."),
+        BotCommand(command="lang", description="Set the language for speech recognition.")
     ]
     await bot.set_my_commands(commands)
     await dp.start_polling(bot)

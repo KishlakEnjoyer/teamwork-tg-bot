@@ -10,10 +10,20 @@ async def send_welcome(message: types.Message):
     """
     Just a welcome message with some instructions and a contact keyboard.
     """
-    await message.answer(f'Hi,{message.from_user.first_name}!' +
-            '\nThis is a bot for recognition your voice and video messages!' +
-            '\nAlso you can search music! Just try command /music' +
-            '\nContacts of the developers ⬇️', reply_markup=keyboard_contacts.contacts)
+    await message.answer(
+        f"🎉 <b>Welcome, {message.from_user.first_name}!</b>\n\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n\n"
+        "🎙 <b>Speech Recognition</b>\n"
+        "    <i>Send a voice message, video or\n"
+        "    🔵 round note — I'll transcribe it!</i>\n\n"
+        "🎵 <b>Music Search</b>\n"
+        "    <i>Use /music to find any track</i>\n\n"
+        "🧠 <b>AI Assistant</b>\n"
+        "    <i>Use /ai to ask me anything</i>\n\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n\n"
+        "📬 <b>Contact the developers:</b>",
+        reply_markup=keyboard_contacts.contacts
+    )
     
 @router.message(Command("help"))
 async def send_welcome(message: types.Message):
@@ -21,14 +31,27 @@ async def send_welcome(message: types.Message):
     Help message showing available commands and features.
     """
     help_text = (
-        f"👋 Hi, {message.from_user.first_name}!\n\n"
-        "<b>Available Commands:</b>\n"
-        "/start - Start the bot and see the welcome message\n"
-        "/help - Show this help message\n"
-        "/music &lt;text&gt; - Search for music tracks (e.g., /music monetka)\n"
-        "/emotion &lt;text&gt; - Analyze the sentiment of the provided text (e.g., /emotion I am happy)\n"
-        "/ai &lt;text&gt; - Ask the AI a question (e.g., /ai Explain quantum computing)\n\n"
-        "<b>Other Features:</b>\n"
-        "Send a <b>voice message</b> or <b>video note</b> (round video) to have the speech recognized automatically."
+        f"👋 <b>Hey, {message.from_user.first_name}!</b>\n\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n"
+        "🤖 <b>Commands</b>\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n\n"
+        "🚀 /start — Welcome message\n"
+        "❓ /help — Show this menu\n\n"
+        "🎵 /music <code>&lt;text&gt;</code>\n"
+        "    <i>Search for music tracks</i>\n\n"
+        "💬 /emotion <code>&lt;text&gt;</code>\n"
+        "    <i>Analyze sentiment of text</i>\n\n"
+        "🧠 /ai <code>&lt;text&gt;</code>\n"
+        "    <i>Ask the AI anything</i>\n\n"
+        "🌐 /lang — Set recognition language\n\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n"
+        "🎙 <b>Voice & Video</b>\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n\n"
+        "Send a <b>voice message</b>, <b>video</b> or\n"
+        "🔵 <b>round video note</b> — and I'll\n"
+        "automatically convert speech to text!\n\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n"
+        "💡 <i>Tip: use /lang to switch between\n"
+        "🇷🇺 Russian and 🇬🇧 English</i>"
     )
     await message.answer(help_text, reply_markup=keyboard_contacts.contacts, parse_mode="HTML")

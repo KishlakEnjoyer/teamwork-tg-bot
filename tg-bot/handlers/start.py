@@ -20,9 +20,12 @@ async def send_welcome(message: types.Message):
         "    <i>Use /music to find any track</i>\n\n"
         "🧠 <b>AI Assistant</b>\n"
         "    <i>Use /ai to ask me anything</i>\n\n"
+        "❓ <b>Any questions left?</b>\n"
+        "    <i>Use /help to see all available commands</i>\n\n"
         "━━━━━━━━━━━━━━━━━━━━━━\n\n"
         "📬 <b>Contact the developers:</b>",
-        reply_markup=keyboard_contacts.contacts
+        reply_markup=keyboard_contacts.contacts,
+        parse_mode="HTML"
     )
     
 @router.message(Command("help"))

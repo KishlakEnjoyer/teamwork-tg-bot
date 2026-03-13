@@ -188,7 +188,7 @@ project/
 
 ## Team Members
 
-- **Eric** — Telegram Bot & Deezer Integration
+- **Erik** — Telegram Bot & Deezer Integration
 - **Vlad** — AI / Voice Recognition
 
 ---
@@ -196,7 +196,7 @@ project/
 ## Task Distribution
 
 ### 1. Telegram Bot (aiogram)
-**Assigned to:** Eric (Lead)
+**Assigned to:** Erik (Lead)
 
 - Bot command handling (`/start`, `/help`, `/music`)
 - Voice message handling
@@ -210,7 +210,7 @@ project/
 ### 2. FastAPI Backend
 **Shared**
 
-**Eric (Lead)**
+**Erik (Lead)**
 - Core FastAPI setup
 - API routes for bot integration
 - Deezer API service integration
@@ -232,10 +232,10 @@ project/
 - Emotion analysis support
 - Future NLP expansion
 
-**Support:** Eric (bot-side formatting & response handling)
+**Support:** Erik (bot-side formatting & response handling)
 
 ### 4. Deezer API Integration
-**Assigned to:** Eric (Lead)
+**Assigned to:** Erik (Lead)
 
 - Integration with Deezer Public API
 - Searching tracks by:
@@ -265,7 +265,7 @@ project/
 
 ## Summary Table
 
-| Task | Eric | Vlad |
+| Task | Erik | Vlad |
 | :--- | :---: | :---: |
 | Telegram Bot | Lead | Support |
 | FastAPI Core | Lead | Partial |

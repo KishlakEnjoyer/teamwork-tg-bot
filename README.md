@@ -27,44 +27,58 @@ Main user scenarios:
 
 ## Bot Screenshots
 
-1. **Welcome Message**
-![Bot welcome message](resources/welcome_message.png)
-Welcome message for users. Here you can see the capabilities of the Telegram bot and subscribe to our GitHub profile 🤗
+### 1. **Welcome Message**
 
-2. **Language Selection**
-![Bot language choice](resources/language_choice.png)
-Here you can select the speech recognition language: 🇷🇺 Russian or 🇬🇧 English (English by default)
+  ![Bot welcome message](resources/welcome_message.png)
+    
+  Welcome message for users. Here you can see the capabilities of the Telegram bot and subscribe to our GitHub profile 🤗
 
-3. **Speech Recognition**
-![Bot speech recognition](resources/speech_recognition.jpg)
-You can send voice or video messages to our Telegram bot. They will be automatically transcribed to text.
+### 2. **Language Selection**
 
-4. **Music Search**
-![Bot music search](resources/music_search.jpg)
-You can search for music by:
-* Title
-* Artist
-* Genre
+  ![Bot language choice](resources/language_choice.png)
+    
+  Here you can select the speech recognition language: 🇷🇺 Russian or 🇬🇧 English (English by default)
 
-The bot returns:
-* Track name
-* Artist
-* Album
-* Cover image
-* Deezer track link
-* Music preview (30 sec)
+### 3. **Speech Recognition**
 
-5. **AI Assistant**
-![Bot AI assistant](resources/ai_assistant.png)
-Use the `/ai` command, enter your question, and the AI Assistant will answer you.
+  ![Bot speech recognition](resources/speech_recognition.jpg)
+    
+  You can send voice or video messages to our Telegram bot. They will be automatically transcribed to text.
 
-6. **Sentiment Analysis**
-![Bot sentiment analyze](resources/sentiment_analyze.png)
-Use the `/emotion` command, enter a comment, and the bot will analyze the sentiment.
+### 4. **Music Search**
 
-7. **Help Command**
-![Bot help command](resources/help_command.png)
-Use the `/help` command to see the help message.
+  ![Bot music search](resources/music_search.jpg)
+    
+  You can search for music by:
+  * Title
+  * Artist
+  * Genre
+    
+  The bot returns:
+  * Track name
+  * Artist
+  * Album
+  * Cover image
+  * Deezer track link
+  * Music preview (30 sec)
+
+### 5. **AI Assistant**
+
+  ![Bot AI assistant](resources/ai_assistant.png)
+
+  Use the `/ai` command, enter your question, and the AI Assistant will answer you.
+
+### 6. **Sentiment Analysis**
+
+  ![Bot sentiment analyze](resources/sentiment_analyze.png)
+
+  Use the `/emotion` command, enter a comment, and the bot will analyze the sentiment.
+
+### 7. **Help Command**
+
+  ![Bot help command](resources/help_command.png)
+
+  Use the `/help` command to see the help message.
 
 ---
 
